@@ -7,5 +7,4 @@ export const default_headers = {Accept: 'application/json'}
 export const webhook_user = {
     name: 'Оповещатель',
     avatar: 'https://i.imgur.com/DIxR2g7.png',
-    cache: 'no-store'
 }

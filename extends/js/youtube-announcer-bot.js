@@ -29,7 +29,10 @@ export default class YoutubeAnnouncerBot {
     async checkYoutubeStream() {
         console.log('Trying to get a list of user streams ' + youtubeChannelID)
         const youtubeLink = `${api_path}/search?part=snippet&channelId=${youtubeChannelID}&eventType=live&type=video&key=${youtubeApiKey}`
-        const response = await fetch(youtubeLink, {headers})
+        const response = await fetch(youtubeLink, {
+            headers,
+            cache: 'no-store'
+        })
         const data = await response.json()
     
         if (data.items && data.items.length > 0) {
