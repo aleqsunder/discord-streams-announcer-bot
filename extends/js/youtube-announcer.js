@@ -74,7 +74,7 @@ export default class YoutubeAnnouncer {
     async runQueue(_client) {
         this.client = _client
         if (!youtubeChannelID) {
-            console.error('[wasd] You didn\'t fill in the channel name')
+            console.error('[youtube] You didn\'t fill in the channel name')
         }
         
         await this.checkStream()
