@@ -1,0 +1,6 @@
+# Project exclude paths
+/node_modules/
+/yarn.lock
+/.idea/
+/.git/
+/.env
