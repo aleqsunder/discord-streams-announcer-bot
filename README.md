@@ -1,6 +1,6 @@
 # discord-streams-announcer-bot
 
-##[EN]
+## [EN]
 
 Allows you to announce the start of your streams (Youtube/WASD) 
 
@@ -16,7 +16,7 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
     5. `WASD_CHANNEL_NAME` - the nickname of the wasd-channel, for example a link `https://wasd.tv/serega_pirat`, where `serega_pirat` - the same nickname
 4. Run `node -r dotenv/config index`
 
-##[RU]
+## [RU]
 
 Позволяет анонсировать начало ваших стримов (Youtube/WASD) 
 
