@@ -78,6 +78,6 @@ export default class YoutubeAnnouncer {
         }
         
         await this.checkStream()
-        setTimeout(this.checkStream, youtube_timeout)
+        setInterval(this.checkStream, youtube_timeout)
     }
 }

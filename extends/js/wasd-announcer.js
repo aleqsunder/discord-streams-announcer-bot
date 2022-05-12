@@ -81,6 +81,6 @@ export default class WasdAnnouncer {
         }
         
         await this.checkStream()
-        setTimeout(this.checkStream, wasd_timeout)
+        setInterval(this.checkStream, wasd_timeout)
     }
 }
