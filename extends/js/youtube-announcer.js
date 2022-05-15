@@ -1,9 +1,14 @@
 import fetch from "node-fetch"
-import {default_headers as headers, webhook_user, youtube_timeout} from "./constants.js"
+import {
+    default_headers as headers,
+    webhook_user,
+    youtube_timeout_limit
+} from "./constants.js"
 import {MessageEmbed} from "discord.js"
+import {convertApiKeys} from "./helpers.js"
 
 const youtubeChannelID = process.env.YOUTUBE_STREAMER_ID
-const youtubeApiKey = process.env.YOUTUBE_API_KEY
+const youtubeApiKeys = convertApiKeys(process.env.YOUTUBE_API_KEY)
 const discordChannelId = process.env.DISCORD_CHANNEL_ID
 
 export default class YoutubeAnnouncer {
@@ -16,7 +21,12 @@ export default class YoutubeAnnouncer {
     
     async checkStream() {
         console.log('[youtube] Trying to get a list of user streams ' + youtubeChannelID)
-        const youtubeLink = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${youtubeChannelID}&eventType=live&type=video&key=${youtubeApiKey}`
+        const currentTime = new Date()
+        const interval = youtube_timeout_limit / youtubeApiKeys.length
+        const currentSecondsInThisHour = (currentTime.getMinutes() * 60 + currentTime.getSeconds())
+        const currentYoutubeApiKeyIndex = (currentSecondsInThisHour / (interval / 1000) ^ 0) % youtubeApiKeys.length
+        const currentYoutubeApiKey = youtubeApiKeys[currentYoutubeApiKeyIndex]
+        const youtubeLink = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${youtubeChannelID}&eventType=live&type=video&key=${currentYoutubeApiKey}`
         const response = await fetch(youtubeLink, {
             headers,
             cache: 'no-store'
@@ -74,10 +84,14 @@ export default class YoutubeAnnouncer {
     async runQueue(_client) {
         this.client = _client
         if (!youtubeChannelID) {
-            console.error('[youtube] You didn\'t fill in the channel name')
+            return console.error('[youtube] You didn\'t fill in the channel name')
+        }
+        if (!youtubeApiKeys || youtubeApiKeys.length === 0) {
+            return console.error('[youtube] You didn\'t fill in the api keys')
         }
         
+        const interval = youtube_timeout_limit / youtubeApiKeys.length
         await this.checkStream()
-        setInterval(this.checkStream, youtube_timeout)
+        setInterval(this.checkStream, interval)
     }
 }

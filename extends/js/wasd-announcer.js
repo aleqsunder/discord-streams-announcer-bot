@@ -77,7 +77,7 @@ export default class WasdAnnouncer {
     async runQueue(_client) {
         this.client = _client
         if (!wasdChannelName) {
-            console.error('[wasd] You didn\'t fill in the channel name')
+            return console.error('[wasd] You didn\'t fill in the channel name')
         }
         
         await this.checkStream()

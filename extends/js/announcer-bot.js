@@ -1,7 +1,7 @@
 import YoutubeAnnouncer from "./youtube-announcer.js"
 import WasdAnnouncer from "./wasd-announcer.js"
 import {Client} from "discord.js"
-import {discord_intents as intents, youtube_timeout} from "./constants.js"
+import {discord_intents as intents} from "./constants.js"
 
 export default class AnnouncerBot {
     constructor() {
