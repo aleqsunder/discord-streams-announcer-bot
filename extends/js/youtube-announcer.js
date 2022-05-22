@@ -31,23 +31,27 @@ export default class YoutubeAnnouncer {
             headers,
             cache: 'no-store'
         })
-        const data = await response.json()
-        
-        if (data && data.items && data.items.length > 0) {
-            const [item] = data.items
-            if (item.id && item.id.videoId) {
-                if (!this.queue.includes(item.id.videoId)) {
-                    console.log(`[youtube] Video ${item.id.videoId} found, trying to send a message to the channel ${discordChannelId}`)
-                    this.queue.push(item.id.videoId)
-                    this.sendMessage(item)
+        const textRaw = await response.text()
+        try {
+            const data = JSON.parse(textRaw)
+            if (data && data.items && data.items.length > 0) {
+                const [item] = data.items
+                if (item.id && item.id.videoId) {
+                    if (!this.queue.includes(item.id.videoId)) {
+                        console.log(`[youtube] Video ${item.id.videoId} found, trying to send a message to the channel ${discordChannelId}`)
+                        this.queue.push(item.id.videoId)
+                        this.sendMessage(item)
+                    } else {
+                        console.log('[youtube] An alert has already been created about this stream, skip')
+                    }
                 } else {
-                    console.log('[youtube] An alert has already been created about this stream, skip')
+                    console.log('[youtube] Video id not found, skip')
                 }
             } else {
-                console.log('[youtube] Video id not found, skip')
+                console.log('[youtube] New streams not found, waiting for the next iteration')
             }
-        } else {
-            console.log('[youtube] New streams not found, waiting for the next iteration')
+        } catch (error) {
+            console.error(error)
         }
     }
     

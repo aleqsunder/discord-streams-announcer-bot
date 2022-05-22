@@ -20,25 +20,29 @@ export default class WasdAnnouncer {
             headers,
             cache: 'no-store'
         })
-        const data = await response.json()
-        
-        if (data.result?.channel) {
-            const {channel = null, media_container = null} = data.result
-            if (channel && media_container && channel.channel_is_live === true) {
-                const [container] = media_container.media_container_streams
-                const {stream_id} = container
-                if (!this.queue.includes(stream_id)) {
-                    console.log(`[wasd] Video ${stream_id} found, trying to send a message to the channel ${discordChannelId}`)
-                    this.queue.push(stream_id)
-                    this.sendMessage(media_container)
+        const textRaw = await response.text()
+        try {
+            const data = JSON.parse(textRaw)
+            if (data.result?.channel) {
+                const {channel = null, media_container = null} = data.result
+                if (channel && media_container && channel.channel_is_live === true) {
+                    const [container] = media_container.media_container_streams
+                    const {stream_id} = container
+                    if (!this.queue.includes(stream_id)) {
+                        console.log(`[wasd] Video ${stream_id} found, trying to send a message to the channel ${discordChannelId}`)
+                        this.queue.push(stream_id)
+                        this.sendMessage(media_container)
+                    } else {
+                        console.log('[wasd] An alert has already been created about this stream, skip')
+                    }
                 } else {
-                    console.log('[wasd] An alert has already been created about this stream, skip')
+                    console.log('[wasd] Video id not found, skip')
                 }
             } else {
-                console.log('[wasd] Video id not found, skip')
+                console.log('[wasd] New streams not found, waiting for the next iteration')
             }
-        } else {
-            console.log('[wasd] New streams not found, waiting for the next iteration')
+        } catch (error) {
+            console.error(error)
         }
     }
     
