@@ -39,6 +39,7 @@ export default class WasdAnnouncer {
                     console.log('[wasd] Video id not found, skip')
                 }
             } else {
+                console.log(JSON.stringify(data))
                 console.log('[wasd] New streams not found, waiting for the next iteration')
             }
         } catch (error) {

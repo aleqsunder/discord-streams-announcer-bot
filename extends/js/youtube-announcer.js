@@ -48,6 +48,7 @@ export default class YoutubeAnnouncer {
                     console.log('[youtube] Video id not found, skip')
                 }
             } else {
+                console.log(JSON.stringify(data))
                 console.log('[youtube] New streams not found, waiting for the next iteration')
             }
         } catch (error) {
