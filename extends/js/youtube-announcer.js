@@ -78,7 +78,7 @@ export default class YoutubeAnnouncer {
                 .then(async context => {
                     console.log('[youtube] Sending a message')
                     await context.send({
-                        content: '@everyone',
+                        content: '@here',
                         embeds: [embed]
                     })
                     await context.delete()

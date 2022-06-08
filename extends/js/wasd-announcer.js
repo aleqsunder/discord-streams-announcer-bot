@@ -71,7 +71,7 @@ export default class WasdAnnouncer {
                 .then(async context => {
                     console.log('[wasd] Sending a message')
                     await context.send({
-                        content: '@everyone',
+                        content: '@here',
                         embeds: [embed]
                     })
                     await context.delete()
