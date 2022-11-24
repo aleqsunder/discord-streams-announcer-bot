@@ -1,24 +1,19 @@
 import fetch from "node-fetch"
 import {
     default_headers as headers,
+    youtube_logo as iconURL,
     webhook_user,
     youtube_timeout_limit
 } from "./constants.js"
 import {MessageEmbed} from "discord.js"
 import {convertApiKeys} from "./helpers.js"
+import BaseAnnouncer from "./base-announcer.js"
 
 const youtubeChannelID = process.env.YOUTUBE_STREAMER_ID
 const youtubeApiKeys = convertApiKeys(process.env.YOUTUBE_API_KEY)
 const discordChannelId = process.env.DISCORD_CHANNEL_ID
 
-export default class YoutubeAnnouncer {
-    constructor() {
-        this.queue = []
-        
-        this.checkStream = this.checkStream.bind(this)
-        this.sendMessage = this.sendMessage.bind(this)
-    }
-    
+export default class YoutubeAnnouncer extends BaseAnnouncer {
     async checkStream() {
         console.log('[youtube] Trying to get a list of user streams ' + youtubeChannelID)
         const currentTime = new Date()
@@ -73,6 +68,10 @@ export default class YoutubeAnnouncer {
                 .setColor('#f00')
                 .setURL(link)
                 .setImage(snippet.thumbnails.high.url)
+                .setFooter({
+                    iconURL,
+                    text: 'Стрим на Youtube'
+                })
     
             discordChannel.createWebhook(name, {avatar})
                 .then(async context => {

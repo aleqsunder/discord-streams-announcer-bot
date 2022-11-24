@@ -1,18 +1,17 @@
 import fetch from "node-fetch"
-import {default_headers as headers, wasd_timeout, webhook_user} from "./constants.js"
+import {
+    default_headers as headers,
+    wasd_logo as iconURL,
+    wasd_timeout,
+    webhook_user
+} from "./constants.js"
 import {MessageEmbed} from "discord.js"
+import BaseAnnouncer from "./base-announcer.js"
 
 const discordChannelId = process.env.DISCORD_CHANNEL_ID
 const wasdChannelName = process.env.WASD_CHANNEL_NAME
 
-export default class WasdAnnouncer {
-    constructor() {
-        this.queue = []
-        
-        this.checkStream = this.checkStream.bind(this)
-        this.sendMessage = this.sendMessage.bind(this)
-    }
-    
+export default class WasdAnnouncer extends BaseAnnouncer {
     async checkStream() {
         console.log('[wasd] Trying to get a list of user streams ' + wasdChannelName)
         const wasdLink = `https://wasd.tv/api/v2/broadcasts/public?channel_name=${wasdChannelName}`
@@ -66,6 +65,10 @@ export default class WasdAnnouncer {
                 .setColor('#0f0')
                 .setURL(link)
                 .setImage(preview)
+                .setFooter({
+                    iconURL,
+                    text: 'Стрим на Trovo'
+                })
     
             discordChannel.createWebhook(name, {avatar})
                 .then(async context => {
