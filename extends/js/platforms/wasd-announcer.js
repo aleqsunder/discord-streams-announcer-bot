@@ -4,9 +4,9 @@ import {
     wasd_logo as iconURL,
     wasd_timeout,
     webhook_user
-} from "./constants.js"
+} from "../constants.js"
 import {MessageEmbed} from "discord.js"
-import BaseAnnouncer from "./base-announcer.js"
+import BaseAnnouncer from "../base-announcer.js"
 
 const discordChannelId = process.env.DISCORD_CHANNEL_ID
 const wasdChannelName = process.env.WASD_CHANNEL_NAME
