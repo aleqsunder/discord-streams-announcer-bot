@@ -4,10 +4,10 @@ import {
     youtube_logo as iconURL,
     webhook_user,
     youtube_timeout_limit
-} from "./constants.js"
+} from "../constants.js"
 import {MessageEmbed} from "discord.js"
-import {convertApiKeys} from "./helpers.js"
-import BaseAnnouncer from "./base-announcer.js"
+import {convertApiKeys} from "../helpers.js"
+import BaseAnnouncer from "../base-announcer.js"
 
 const youtubeChannelID = process.env.YOUTUBE_STREAMER_ID
 const youtubeApiKeys = convertApiKeys(process.env.YOUTUBE_API_KEY)

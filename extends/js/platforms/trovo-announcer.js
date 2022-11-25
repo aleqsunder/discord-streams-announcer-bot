@@ -1,8 +1,8 @@
 import fetch from "node-fetch"
-import {trovo_timeout, webhook_user} from "./constants.js"
+import {trovo_timeout, webhook_user} from "../constants.js"
 import {MessageEmbed} from "discord.js"
-import BaseAnnouncer from "./base-announcer.js"
-import {trovo_logo as iconURL} from "./constants.js"
+import BaseAnnouncer from "../base-announcer.js"
+import {trovo_logo as iconURL} from "../constants.js"
 
 const discordChannelId = process.env.DISCORD_CHANNEL_ID
 const trovoChannelName = process.env.TROVO_CHANNEL_NAME

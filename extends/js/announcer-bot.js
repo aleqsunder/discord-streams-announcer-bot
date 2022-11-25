@@ -1,6 +1,7 @@
-import YoutubeAnnouncer from "./youtube-announcer.js"
-import WasdAnnouncer from "./wasd-announcer.js"
-import TrovoAnnouncer from "./trovo-announcer.js"
+import YoutubeAnnouncer from "./platforms/youtube-announcer.js"
+import WasdAnnouncer from "./platforms/wasd-announcer.js"
+import TrovoAnnouncer from "./platforms/trovo-announcer.js"
+import TwitchAnnouncer from "./platforms/twitch-announcer.js"
 
 import {Client} from "discord.js"
 import {discord_intents as intents} from "./constants.js"
@@ -10,7 +11,8 @@ export default class AnnouncerBot {
         this.platforms = [
             new YoutubeAnnouncer(),
             new WasdAnnouncer(),
-            new TrovoAnnouncer()
+            new TrovoAnnouncer(),
+            new TwitchAnnouncer()
         ]
         
         this.main = this.main.bind(this)
