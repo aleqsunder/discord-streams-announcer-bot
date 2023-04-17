@@ -11,3 +11,4 @@ export const webhook_user = {
 
 export const NOTAUTHORIZED = "Not authorized"
 export const UNEXPECTED = "Unexpected"
+export const SESSION_RESTORED = "Session restored"
