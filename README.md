@@ -2,7 +2,7 @@
 
 ## [EN]
 
-Allows you to announce the start of your streams (Youtube/WASD/Trovo/Twitch) 
+Allows you to announce the start of your streams (Youtube/WASD/Trovo/Twitch/VkPlay/Caffeine) 
 
 To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (or don't install if you're a freak), and then:
 
@@ -43,11 +43,19 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
 `TWITCH_CLIENT_SECRET` - client_secret from twitch develop\
 `TWITCH_CHANNEL_NAME` - the nickname of the twitch channel, for example the link `https://twitch.tv/serega_pirat` where `serega_pirat` is the same nickname
 
+  ### VK PLAY (optional)
+  
+`VKPLAY_CHANNEL_NAME` - the nickname of the vklive-channel, for example a link `https://vkplay.live/serega_pirat`, where `serega_pirat` - the same nickname
+
+  ### CAFFEINE.TV (optional)
+  
+`CAFFEINE_CHANNEL_NAME` - the nickname of the caffeine-channel, for example a link `https://www.caffeine.tv/serega_pirat`, where `serega_pirat` - the same nickname
+
 </details>
 
 ## [RU]
 
-Позволяет анонсировать начало ваших стримов (Youtube/WASD/Trovo/Twitch) 
+Позволяет анонсировать начало ваших стримов (Youtube/WASD/Trovo/Twitch/VkPlay/Caffeine) 
 
 Для начала работы необходимо установить [NodeJS](https://nodejs.org/en/) и [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (либо не устанавливать, если ты фрик), и следом:
 
@@ -87,5 +95,13 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
 `TWITCH_CLIENT_ID` - client_id из twitch develop\
 `TWITCH_CLIENT_SECRET` - client_secret из twitch develop\
 `TWITCH_CHANNEL_NAME` - никнейм twitch-канала, например ссылка `https://twitch.tv/serega_pirat`, где `serega_pirat` - тот самый никнейм
+
+  ### ВК ПЛЕЙ (не обязательно)
+  
+`VKPLAY_CHANNEL_NAME` - никнейм вкплей-канала, например ссылка https://vkplay.live/serega_pirat`, где `serega_pirat` - тот самый никнейм
+
+  ### CAFFEINE.TV (не обязательно)
+  
+`CAFFEINE_CHANNEL_NAME` - никнейм caffeine-канала, например ссылка `https://www.caffeine.tv/serega_pirat`, где `serega_pirat` - тот самый никнейм
   
 </details>
