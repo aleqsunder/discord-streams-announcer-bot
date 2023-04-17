@@ -98,7 +98,7 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
 
   ### ВК ПЛЕЙ (не обязательно)
   
-`VKPLAY_CHANNEL_NAME` - никнейм вкплей-канала, например ссылка https://vkplay.live/serega_pirat`, где `serega_pirat` - тот самый никнейм
+`VKPLAY_CHANNEL_NAME` - никнейм вкплей-канала, например ссылка `https://vkplay.live/serega_pirat`, где `serega_pirat` - тот самый никнейм
 
   ### CAFFEINE.TV (не обязательно)
   
