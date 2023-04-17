@@ -1,21 +1,23 @@
 import fetch from "node-fetch"
-import {trovo_timeout, webhook_user} from "../constants.js"
-import {MessageEmbed} from "discord.js"
 import BaseAnnouncer from "../base-announcer.js"
-import {trovo_logo as iconURL} from "../constants.js"
 
-const discordChannelId = process.env.DISCORD_CHANNEL_ID
 const trovoChannelName = process.env.TROVO_CHANNEL_NAME
 
 export default class TrovoAnnouncer extends BaseAnnouncer {
+    platformName = 'Trovo'
+    platformLogo = 'https://i.imgur.com/17ZhzQa.png'
+    platformLink = 'https://trovo.live/s/'
+    platformColor = '#1cbc73'
+    channelName = trovoChannelName
+    
     async checkStream() {
-        console.log('[trovo] Trying to get a status of channel ' + trovoChannelName)
+        this.log(`Trying to get a status of channel ${this.channelName}`)
         const trovoLink = `https://api-web.trovo.live/graphql?qid=0`
         const body = JSON.stringify([{
             operationName: "live_LiveReaderService_GetLiveInfo",
             variables: {
                 params: {
-                    userName: trovoChannelName,
+                    userName: this.channelName,
                     requireDecorations: true
                 }
             }
@@ -35,64 +37,23 @@ export default class TrovoAnnouncer extends BaseAnnouncer {
                 const {isLive = false, programInfo = {}} = info
                 const {id: stream_id = 0} = programInfo
                 if (!isLive) {
-                    return console.log('[trovo] Streamer offline')
+                    return this.log(`Streamer offline`)
                 }
     
                 if (!this.queue.includes(stream_id)) {
-                    console.log(`[trovo] Video ${stream_id} found, trying to send a message to the channel ${discordChannelId}`)
                     this.queue.push(stream_id)
-                    this.sendMessage(programInfo)
+                    this.sendMessage({
+                        title: programInfo.title,
+                        preview: programInfo.coverUrl
+                    }, stream_id)
                 } else {
-                    console.log('[trovo] An alert has already been created about this stream, skip')
+                    this.log(`An alert has already been created about this stream, skip`)
                 }
             } else {
-                console.log('[trovo] Streaming information not found')
+                this.log(`Streaming information not found`)
             }
         } catch (error) {
             console.error(error)
         }
-    }
-    
-    sendMessage(programInfo) {
-        const discordChannel = this.client.channels.cache.get(discordChannelId)
-        if (discordChannel) {
-            const {title, coverUrl: preview} = programInfo
-        
-            const link = 'https://trovo.live/s/' + trovoChannelName
-            const {name, avatar} = webhook_user
-            const embed = new MessageEmbed()
-                .setTitle(title)
-                .setAuthor({
-                    name: `${trovoChannelName}`,
-                    url: link
-                })
-                .setColor('#1cbc73')
-                .setURL(link)
-                .setImage(preview)
-                .setFooter({
-                    iconURL,
-                    text: 'Стрим на Trovo'
-                })
-        
-            discordChannel.createWebhook(name, {avatar})
-                .then(async context => {
-                    console.log('[trovo] Sending a message')
-                    await context.send({
-                        content: '@here',
-                        embeds: [embed]
-                    })
-                    await context.delete()
-                })
-        }
-    }
-    
-    async runQueue(_client) {
-        this.client = _client
-        if (!trovoChannelName) {
-            return console.error('[trovo] You didn\'t fill in the channel name')
-        }
-        
-        await this.checkStream()
-        setInterval(this.checkStream, trovo_timeout)
     }
 }

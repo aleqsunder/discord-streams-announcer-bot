@@ -1,19 +1,18 @@
 import BaseAnnouncer from "../base-announcer.js"
-import {
-    NOTAUTHORIZED,
-    UNEXPECTED,
-    twitch_logo as iconURL,
-    twitch_timeout,
-    webhook_user
-} from "../constants.js"
-import {MessageEmbed} from "discord.js"
+import {NOTAUTHORIZED, UNEXPECTED} from "../constants.js"
+import fetch from "node-fetch"
 
-const discordChannelId = process.env.DISCORD_CHANNEL_ID
 const twitchChannelName = process.env.TWITCH_CHANNEL_NAME
 
 export default class TwitchAnnouncer extends BaseAnnouncer {
+    platformName = 'Twitch'
+    platformLogo = 'https://i.imgur.com/SJah69y.png'
+    platformLink = 'https://www.twitch.tv/'
+    platformColor = '#a970ff'
+    channelName = twitchChannelName
+    
     async checkStream() {
-        console.log('[twitch] Trying to get a status of channel ' + twitchChannelName)
+        this.log(`Trying to get a status of channel ${twitchChannelName}`)
         try {
             const userData = await this.getUser(twitchChannelName)
             if (userData.length > 0) {
@@ -26,17 +25,24 @@ export default class TwitchAnnouncer extends BaseAnnouncer {
                     const {id: stream_id} = stream
                     
                     if (!this.queue.includes(stream_id)) {
-                        console.log(`[twitch] Video ${stream_id} found, trying to send a message to the channel ${discordChannelId}`)
+                        const {title, thumbnail_url} = stream
+                        const preview = thumbnail_url
+                            .replace('{width}', 1600)
+                            .replace('{height}', 900)
+                        
                         this.queue.push(stream_id)
-                        this.sendMessage(stream)
+                        this.sendMessage({
+                            title,
+                            preview
+                        }, stream_id)
                     } else {
-                        console.log('[twitch] An alert has already been created about this stream, skip')
+                        this.log('An alert has already been created about this stream, skip')
                     }
                 } else {
-                    console.log('[twitch] Streamer offline')
+                    this.log('Streamer offline')
                 }
             } else {
-                console.log('[twitch] Streaming information not found')
+                this.log('Streaming information not found')
             }
         } catch (e) {
             switch (e.message) {
@@ -54,49 +60,57 @@ export default class TwitchAnnouncer extends BaseAnnouncer {
         }
     }
     
-    sendMessage(stream) {
-        const discordChannel = this.client.channels.cache.get(discordChannelId)
-        if (discordChannel) {
-            const {title, thumbnail_url} = stream
-            const preview = thumbnail_url
-                .replace('{width}', 1600)
-                .replace('{height}', 900)
-            
-            const link = 'https://www.twitch.tv/' + twitchChannelName
-            const {name, avatar} = webhook_user
-            const embed = new MessageEmbed()
-                .setTitle(title)
-                .setAuthor({
-                    name: `${twitchChannelName}`,
-                    url: link
-                })
-                .setColor('#1cbc73')
-                .setURL(link)
-                .setImage(preview)
-                .setFooter({
-                    iconURL,
-                    text: 'Стрим на Twitch'
-                })
-            
-            discordChannel.createWebhook(name, {avatar})
-                .then(async context => {
-                    console.log('[twitch] Sending a message')
-                    await context.send({
-                        content: '@here',
-                        embeds: [embed]
-                    })
-                    await context.delete()
-                })
+    get init () {
+        return {
+            headers: {
+                Authorization: `Bearer ${this.token}`,
+                'Client-ID': process.env.TWITCH_CLIENT_ID
+            }
         }
     }
     
-    async runQueue(_client) {
-        this.client = _client
-        if (!twitchChannelName) {
-            return console.error('[twitch] You didn\'t fill in the channel name')
+    async get(url) {
+        const userResponse = await fetch(url, this.init)
+        const {status = 200, data = []} = await userResponse.json()
+        
+        if (status === 401) {
+            throw new Error(NOTAUTHORIZED)
         }
         
-        await this.checkStream()
-        setInterval(this.checkStream, twitch_timeout)
+        switch (status) {
+            case 200:
+                return data
+            case 401:
+                throw new Error(NOTAUTHORIZED)
+            default:
+                throw new Error(UNEXPECTED)
+        }
+    }
+    
+    async getUser(name) {
+        return await this.get('https://api.twitch.tv/helix/users?login=' + name)
+    }
+    
+    async getStreamInfo(userId) {
+        return await this.get('https://api.twitch.tv/helix/streams?user_id=' + userId)
+    }
+    
+    async authorize() {
+        const clientId = `client_id=${process.env.TWITCH_CLIENT_ID}`
+        const clientSecret = `client_secret=${process.env.TWITCH_CLIENT_SECRET}`
+        
+        const response = await fetch(`https://id.twitch.tv/oauth2/token?${clientId}&${clientSecret}&grant_type=client_credentials`, {
+            method: 'post'
+        })
+        const result = await response.json()
+        const {access_token = null} = result
+        if (access_token) {
+            this.log('Session restored')
+            this.token = access_token
+            return true
+        }
+        
+        this.log('Invalid restored')
+        return false
     }
 }

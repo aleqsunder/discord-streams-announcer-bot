@@ -1,7 +1,16 @@
-import fetch from "node-fetch"
-import {NOTAUTHORIZED, UNEXPECTED} from "./constants.js"
+import {webhook_user} from "./constants.js"
+import {MessageEmbed} from "discord.js"
+
+const discordChannelId = process.env.DISCORD_CHANNEL_ID
 
 export default class BaseAnnouncer {
+    platformName = null
+    platformLogo = null
+    platformLink = null
+    platformColor = '#000000'
+    channelName = null
+    channelNameFormat = null
+    interval = 3e4
     token = null
     
     constructor() {
@@ -9,65 +18,62 @@ export default class BaseAnnouncer {
         
         this.checkStream = this.checkStream.bind(this)
         this.sendMessage = this.sendMessage.bind(this)
+        this.log = this.log.bind(this)
     }
     
-    async checkStream() {}
+    async checkStream() {
+        this.error('This method is not implemented')
+    }
     
-    sendMessage() {}
-    
-    async runQueue(_client) {}
-    
-    get init () {
-        return {
-            headers: {
-                Authorization: `Bearer ${this.token}`,
-                'Client-ID': process.env.TWITCH_CLIENT_ID
-            }
+    sendMessage(data, stream_id) {
+        this.log(`Video ${stream_id} found, trying to send a message to the channel ${discordChannelId}`)
+        
+        const discordChannel = this.client.channels.cache.get(discordChannelId)
+        if (discordChannel) {
+            const {title, preview, videoId = null} = data
+            const {name, avatar} = webhook_user
+            const link = this.platformLink + (videoId ?? this.channelName)
+            const embed = new MessageEmbed()
+                .setTitle(title)
+                .setAuthor({
+                    name: `${this.channelNameFormat ?? this.channelName}`,
+                    url: link
+                })
+                .setColor(this.platformColor)
+                .setURL(link)
+                .setImage(preview)
+                .setFooter({
+                    iconURL: this.platformLogo,
+                    text: `Стрим на ${this.platformName}`
+                })
+            
+            discordChannel.createWebhook(name, {avatar})
+                .then(async context => {
+                    this.log(`Sending a message`)
+                    await context.send({
+                        content: '@here',
+                        embeds: [embed]
+                    })
+                    await context.delete()
+                })
         }
     }
     
-    async get(url) {
-        const userResponse = await fetch(url, this.init)
-        const {status = 200, data = []} = await userResponse.json()
-        
-        if (status === 401) {
-            throw new Error(NOTAUTHORIZED)
+    async runQueue(_client) {
+        this.client = _client
+        if (!this.channelName) {
+            return this.error(`You didn\'t fill in the channel name`)
         }
         
-        switch (status) {
-            case 200:
-                return data
-            case 401:
-                throw new Error(NOTAUTHORIZED)
-            default:
-                throw new Error(UNEXPECTED)
-        }
+        await this.checkStream()
+        setInterval(this.checkStream, this.interval)
     }
     
-    async getUser(name) {
-        return await this.get('https://api.twitch.tv/helix/users?login=' + name)
+    log(text) {
+        console.log(`[${this.platformName}] ${text}`)
     }
     
-    async getStreamInfo(userId) {
-        return await this.get('https://api.twitch.tv/helix/streams?user_id=' + userId)
-    }
-    
-    async authorize() {
-        const clientId = `client_id=${process.env.TWITCH_CLIENT_ID}`
-        const clientSecret = `client_secret=${process.env.TWITCH_CLIENT_SECRET}`
-        
-        const response = await fetch(`https://id.twitch.tv/oauth2/token?${clientId}&${clientSecret}&grant_type=client_credentials`, {
-            method: 'post'
-        })
-        const result = await response.json()
-        const {access_token = null} = result
-        if (access_token) {
-            console.log('[twitch] Session restored')
-            this.token = access_token
-            return true
-        }
-        
-        console.log('[twitch] Invalid restored')
-        return false
+    error(text) {
+        console.error(`[${this.platformName}] ${text}`)
     }
 }
