@@ -3,6 +3,7 @@ import WasdAnnouncer from "./wasd-announcer.js"
 import TrovoAnnouncer from "./trovo-announcer.js"
 import TwitchAnnouncer from "./twitch-announcer.js"
 import VkPlayAnnouncer from "./vk-play-announcer.js"
+import CaffeineAnnouncer from "./caffeine-announcer.js"
 
 export default [
     new YoutubeAnnouncer(),
@@ -10,4 +11,5 @@ export default [
     new TrovoAnnouncer(),
     new TwitchAnnouncer(),
     new VkPlayAnnouncer(),
+    new CaffeineAnnouncer(),
 ]

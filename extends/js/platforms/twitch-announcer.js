@@ -1,6 +1,7 @@
 import BaseAnnouncer from "../base-announcer.js"
-import {NOTAUTHORIZED, UNEXPECTED} from "../constants.js"
+import {NOTAUTHORIZED, SESSION_RESTORED, UNEXPECTED} from "../constants.js"
 import fetch from "node-fetch"
+import {ALERT_ALREADY_CREATED, INFO_NOT_FOUND, INVALID_SESSION_RESTORED, STREAMER_OFFLINE} from "../errors.js"
 
 const twitchChannelName = process.env.TWITCH_CHANNEL_NAME
 
@@ -15,35 +16,33 @@ export default class TwitchAnnouncer extends BaseAnnouncer {
         this.log(`Trying to get a status of channel ${twitchChannelName}`)
         try {
             const userData = await this.getUser(twitchChannelName)
-            if (userData.length > 0) {
-                const [user] = userData
-                const {id: userId} = user
-                
-                const streamData = await this.getStreamInfo(userId)
-                if (streamData.length > 0) {
-                    const [stream] = streamData
-                    const {id: stream_id} = stream
-                    
-                    if (!this.queue.includes(stream_id)) {
-                        const {title, thumbnail_url} = stream
-                        const preview = thumbnail_url
-                            .replace('{width}', 1600)
-                            .replace('{height}', 900)
-                        
-                        this.queue.push(stream_id)
-                        this.sendMessage({
-                            title,
-                            preview
-                        }, stream_id)
-                    } else {
-                        this.log('An alert has already been created about this stream, skip')
-                    }
-                } else {
-                    this.log('Streamer offline')
-                }
-            } else {
-                this.log('Streaming information not found')
+            if (userData.length === 0) {
+                return this.log(INFO_NOT_FOUND)
             }
+            
+            const [user] = userData
+            const {id: userId} = user
+            const streamData = await this.getStreamInfo(userId)
+            if (streamData.length === 0) {
+                return this.log(STREAMER_OFFLINE)
+            }
+            
+            const [stream] = streamData
+            const {id: stream_id} = stream
+            if (this.queue.includes(stream_id)) {
+                return this.log(ALERT_ALREADY_CREATED)
+            }
+            
+            const {title, thumbnail_url} = stream
+            const preview = thumbnail_url
+                .replace('{width}', 1600)
+                .replace('{height}', 900)
+    
+            this.queue.push(stream_id)
+            this.sendMessage({
+                title,
+                preview
+            }, stream_id)
         } catch (e) {
             switch (e.message) {
                 case NOTAUTHORIZED:
@@ -105,12 +104,12 @@ export default class TwitchAnnouncer extends BaseAnnouncer {
         const result = await response.json()
         const {access_token = null} = result
         if (access_token) {
-            this.log('Session restored')
+            this.log(SESSION_RESTORED)
             this.token = access_token
             return true
         }
         
-        this.log('Invalid restored')
+        this.log(INVALID_SESSION_RESTORED)
         return false
     }
 }

@@ -1,5 +1,6 @@
 import fetch from "node-fetch"
 import BaseAnnouncer from "../base-announcer.js"
+import {ALERT_ALREADY_CREATED, INFO_NOT_FOUND, STREAMER_OFFLINE} from "../errors.js"
 
 const trovoChannelName = process.env.TROVO_CHANNEL_NAME
 
@@ -32,26 +33,26 @@ export default class TrovoAnnouncer extends BaseAnnouncer {
         try {
             /** @param {result: {data: {live_LiveReaderService_GetLiveInfo: Object}}} result */
             const [result] = JSON.parse(textRaw)
-            if (result.data?.live_LiveReaderService_GetLiveInfo) {
-                const {data: {live_LiveReaderService_GetLiveInfo: info = {}} = {}} = result
-                const {isLive = false, programInfo = {}} = info
-                const {id: stream_id = 0} = programInfo
-                if (!isLive) {
-                    return this.log(`Streamer offline`)
-                }
-    
-                if (!this.queue.includes(stream_id)) {
-                    this.queue.push(stream_id)
-                    this.sendMessage({
-                        title: programInfo.title,
-                        preview: programInfo.coverUrl
-                    }, stream_id)
-                } else {
-                    this.log(`An alert has already been created about this stream, skip`)
-                }
-            } else {
-                this.log(`Streaming information not found`)
+            if (!result.data?.live_LiveReaderService_GetLiveInfo) {
+                return this.log(INFO_NOT_FOUND)
             }
+            
+            const {data: {live_LiveReaderService_GetLiveInfo: info = {}} = {}} = result
+            const {isLive = false, programInfo = {}} = info
+            const {id: stream_id = 0} = programInfo
+    
+            if (!isLive) {
+                return this.log(STREAMER_OFFLINE)
+            }
+            if (this.queue.includes(stream_id)) {
+                return this.log(ALERT_ALREADY_CREATED)
+            }
+    
+            this.queue.push(stream_id)
+            this.sendMessage({
+                title: programInfo.title,
+                preview: programInfo.coverUrl
+            }, stream_id)
         } catch (error) {
             console.error(error)
         }

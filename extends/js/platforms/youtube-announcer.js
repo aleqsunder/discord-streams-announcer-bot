@@ -2,6 +2,7 @@ import fetch from "node-fetch"
 import {default_headers as headers, youtube_timeout_limit} from "../constants.js"
 import {convertApiKeys} from "../helpers.js"
 import BaseAnnouncer from "../base-announcer.js"
+import {ALERT_ALREADY_CREATED, INFO_NOT_FOUND, STREAMER_OFFLINE} from "../errors.js";
 
 const youtubeChannelID = process.env.YOUTUBE_STREAMER_ID
 const youtubeApiKeys = convertApiKeys(process.env.YOUTUBE_API_KEY)
@@ -29,32 +30,32 @@ export default class YoutubeAnnouncer extends BaseAnnouncer {
         const textRaw = await response.text()
         try {
             const data = JSON.parse(textRaw)
-            if (data && data.items && data.items.length > 0) {
-                const [item] = data.items
-                if (item.id && item.id.videoId) {
-                    if (!this.queue.includes(item.id.videoId)) {
-                        const {snippet, id: {videoId}} = item
-                        const {channelTitle, title} = snippet
-                        const preview = snippet.thumbnails.high.url
-                        const stream_id = item.id.videoId
-                        
-                        this.channelNameFormat = channelTitle
-                        this.queue.push(stream_id)
-                        this.sendMessage({
-                            title,
-                            preview,
-                            videoId
-                        }, stream_id)
-                    } else {
-                        this.log('An alert has already been created about this stream, skip')
-                    }
-                } else {
-                    this.log('Video id not found, skip')
-                }
-            } else {
+            if (!data || !data.items || data.items.length === 0) {
                 console.log(JSON.stringify(data))
-                this.log('New streams not found, waiting for the next iteration')
+                return this.log(INFO_NOT_FOUND)
             }
+    
+            const [item] = data.items
+            if (!item.id || !item.id.videoId) {
+                return this.log(STREAMER_OFFLINE)
+            }
+            
+            if (this.queue.includes(item.id.videoId)) {
+                return this.log(ALERT_ALREADY_CREATED)
+            }
+            
+            const {snippet, id: {videoId}} = item
+            const {channelTitle, title} = snippet
+            const preview = snippet.thumbnails.high.url
+            const stream_id = item.id.videoId
+    
+            this.channelNameFormat = channelTitle
+            this.queue.push(stream_id)
+            this.sendMessage({
+                title,
+                preview,
+                videoId
+            }, stream_id)
         } catch (error) {
             console.error(error)
         }
@@ -63,10 +64,10 @@ export default class YoutubeAnnouncer extends BaseAnnouncer {
     async runQueue(_client) {
         this.client = _client
         if (!this.channelName) {
-            return console.error('[youtube] You didn\'t fill in the channel name')
+            return this.error('You didn\'t fill in the channel name')
         }
         if (!youtubeApiKeys || youtubeApiKeys.length === 0) {
-            return console.error('[youtube] You didn\'t fill in the api keys')
+            return this.error('You didn\'t fill in the api keys')
         }
         
         const interval = this.interval / youtubeApiKeys.length
