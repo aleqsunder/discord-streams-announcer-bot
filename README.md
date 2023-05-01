@@ -1,8 +1,16 @@
 # discord-streams-announcer-bot
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg" alt=“” height="35px" style="margin-right: 20px">
+<img src="https://st.wasd.tv/upload/channel_images/9851a36c-1abb-4c30-a92d-f433a80d226d/original.png" alt=“” height="35px" style="margin-right: 20px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Trovo_Logo.png" alt=“” height="35px" style="margin-right: 20px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Twitch_logo_%28wordmark_only%29.svg/2560px-Twitch_logo_%28wordmark_only%29.svg.png" alt=“” height="35px" style="margin-right: 20px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/VK_Play_logo.svg/2560px-VK_Play_logo.svg.png" alt=“” height="35px" style="margin-right: 20px">
+<img src="https://i.imgur.com/Wggqcrx.png" alt=“” height="35px" style="margin-right: 20px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GoodGame_logo.svg/800px-GoodGame_logo.svg.png" alt=“” height="35px" style="margin-right: 20px">
+
 ## [EN]
 
-Allows you to announce the start of your streams (Youtube/WASD/Trovo/Twitch/VkPlay/Caffeine) 
+Allows you to announce the start of your streams: Youtube, WASD, Trovo, Twitch, VkPlay, Caffeine and GoodGame!
 
 To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (or don't install if you're a freak), and then:
 
@@ -51,11 +59,15 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
   
 `CAFFEINE_CHANNEL_NAME` - the nickname of the caffeine-channel, for example a link `https://www.caffeine.tv/serega_pirat`, where `serega_pirat` - the same nickname
 
+  ### GOODGAME.RU (optional)
+
+`GOODGAME_CHANNEL_NAME` - the nickname of the goodgame-channel, for example a link `https://goodgame.ru/serega_pirat`, where `serega_pirat` - the same nickname
+
 </details>
 
 ## [RU]
 
-Позволяет анонсировать начало ваших стримов (Youtube/WASD/Trovo/Twitch/VkPlay/Caffeine) 
+Позволяет анонсировать начало ваших стримов: Youtube, WASD, Trovo, Twitch, VkPlay, Caffeine и GoodGame!
 
 Для начала работы необходимо установить [NodeJS](https://nodejs.org/en/) и [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (либо не устанавливать, если ты фрик), и следом:
 
@@ -103,5 +115,9 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
   ### CAFFEINE.TV (не обязательно)
   
 `CAFFEINE_CHANNEL_NAME` - никнейм caffeine-канала, например ссылка `https://www.caffeine.tv/serega_pirat`, где `serega_pirat` - тот самый никнейм
+
+  ### GOODGAME.RU (не обязательно)
+
+`GOODGAME_CHANNEL_NAME` - никнейм goodgame-канала, например ссылка `https://goodgame.ru/serega_pirat`, где `serega_pirat` - тот самый никнейм
   
 </details>
