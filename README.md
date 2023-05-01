@@ -1,12 +1,7 @@
 # discord-streams-announcer-bot
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg" alt=“” height="35px" style="margin-right: 20px">
-<img src="https://st.wasd.tv/upload/channel_images/9851a36c-1abb-4c30-a92d-f433a80d226d/original.png" alt=“” height="35px" style="margin-right: 20px">
-<img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Trovo_Logo.png" alt=“” height="35px" style="margin-right: 20px">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Twitch_logo_%28wordmark_only%29.svg/2560px-Twitch_logo_%28wordmark_only%29.svg.png" alt=“” height="35px" style="margin-right: 20px">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/VK_Play_logo.svg/2560px-VK_Play_logo.svg.png" alt=“” height="35px" style="margin-right: 20px">
-<img src="https://i.imgur.com/Wggqcrx.png" alt=“” height="35px" style="margin-right: 20px">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GoodGame_logo.svg/800px-GoodGame_logo.svg.png" alt=“” height="35px" style="margin-right: 20px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg" alt=“” height="35px"> ⠀ <img src="https://st.wasd.tv/upload/channel_images/9851a36c-1abb-4c30-a92d-f433a80d226d/original.png" alt=“” height="35px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Trovo_Logo.png" alt=“” height="35px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Twitch_logo_%28wordmark_only%29.svg/2560px-Twitch_logo_%28wordmark_only%29.svg.png" alt=“” height="35px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/VK_Play_logo.svg/2560px-VK_Play_logo.svg.png" alt=“” height="35px"> ⠀ <img src="https://i.imgur.com/Wggqcrx.png" alt=“” height="35px">
+ ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GoodGame_logo.svg/800px-GoodGame_logo.svg.png" alt=“” height="35px">
 
 ## [EN]
 
