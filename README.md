@@ -1,12 +1,15 @@
 # discord-streams-announcer-bot
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg" alt=“” height="30px"> ⠀ <img src="https://st.wasd.tv/upload/channel_images/9851a36c-1abb-4c30-a92d-f433a80d226d/original.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Trovo_Logo.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Twitch_logo_%28wordmark_only%29.svg/2560px-Twitch_logo_%28wordmark_only%29.svg.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/VK_Play_logo.svg/2560px-VK_Play_logo.svg.png" alt=“” height="30px"> ⠀ <img src="https://i.imgur.com/Wggqcrx.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GoodGame_logo.svg/800px-GoodGame_logo.svg.png" alt=“” height="30px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg" alt=“” height="30px"> ⠀ <img src="https://st.wasd.tv/upload/channel_images/9851a36c-1abb-4c30-a92d-f433a80d226d/original.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Trovo_Logo.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Twitch_logo_%28wordmark_only%29.svg/2560px-Twitch_logo_%28wordmark_only%29.svg.png" alt=“” height="30px"> ⠀ 
+<br>
+<img src="https://i.imgur.com/UHQFKTV.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/VK_Play_logo.svg/2560px-VK_Play_logo.svg.png" alt=“” height="30px"> ⠀ <img src="https://i.imgur.com/Wggqcrx.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GoodGame_logo.svg/800px-GoodGame_logo.svg.png" alt=“” height="30px">
 
 ## [EN]
 
-Allows you to announce the start of your streams: Youtube, WASD, Trovo, Twitch, VkPlay, Caffeine and GoodGame!
+Allows you to announce the start of your streams: Youtube, WASD, Trovo, Twitch, Kick, VkPlay, Caffeine and GoodGame!
 
-To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (or don't install if you're a freak), and then:
+You can safely use this project and/or parts of it in your own projects\
+To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (optional), and then:
 
   1. Clone the repository
   2. `yarn install` (or `npm install`)
@@ -45,6 +48,10 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
 `TWITCH_CLIENT_SECRET` - client_secret from twitch develop\
 `TWITCH_CHANNEL_NAME` - the nickname of the twitch channel, for example the link `https://twitch.tv/serega_pirat` where `serega_pirat` is the same nickname
 
+  ### Kick (optional)
+
+`KICK_CHANNEL_NAME` - the nickname of the kick-channel, for example a link `https://kick.com/serega_pirat`, where `serega_pirat` - the same nickname
+
   ### VK PLAY (optional)
   
 `VKPLAY_CHANNEL_NAME` - the nickname of the vklive-channel, for example a link `https://vkplay.live/serega_pirat`, where `serega_pirat` - the same nickname
@@ -63,7 +70,8 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
 
 Позволяет анонсировать начало ваших стримов: Youtube, WASD, Trovo, Twitch, VkPlay, Caffeine и GoodGame!
 
-Для начала работы необходимо установить [NodeJS](https://nodejs.org/en/) и [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (либо не устанавливать, если ты фрик), и следом:
+Вы можете спокойно использовать данный проект и/или его отдельные части в своих проектах\
+Для начала работы необходимо установить [NodeJS](https://nodejs.org/en/) и [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (не обязательно), и следом:
 
 1. Клонировать репозиторий
 2. `yarn install` (или `npm install`)
@@ -101,6 +109,10 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
 `TWITCH_CLIENT_ID` - client_id из twitch develop\
 `TWITCH_CLIENT_SECRET` - client_secret из twitch develop\
 `TWITCH_CHANNEL_NAME` - никнейм twitch-канала, например ссылка `https://twitch.tv/serega_pirat`, где `serega_pirat` - тот самый никнейм
+
+  ### Кик (не обязательно)
+
+`KICK_CHANNEL_NAME` - никнейм кик-канала, например ссылка `https://kick.com/serega_pirat`, где `serega_pirat` - тот самый никнейм
 
   ### ВК ПЛЕЙ (не обязательно)
   
