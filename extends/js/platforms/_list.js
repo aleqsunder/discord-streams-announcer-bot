@@ -8,7 +8,6 @@ import GoodGameAnnouncer from "./goodgame-announcer.js"
 import KickAnnouncer from "./kick-announcer.js"
 
 export default [
-    new YoutubeAnnouncer(),
     new WasdAnnouncer(),
     new TrovoAnnouncer(),
     new TwitchAnnouncer(),

@@ -17,7 +17,11 @@ export default class KickAnnouncer extends BaseAnnouncer {
         const kickLink = `https://kick.com/api/v2/channels/${this.channelName}`
         
         try {
-            const browser = await puppeteer.launch({headless: 'new', executablePath: executablePath()})
+            const browser = await puppeteer.launch({
+                headless: 'new',
+                executablePath: executablePath(),
+                args: ['--no-sandbox']
+            })
             const page = await browser.newPage()
     
             await page.goto(kickLink)
