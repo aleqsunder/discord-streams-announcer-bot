@@ -40,7 +40,7 @@ export default class KickAnnouncer extends BaseAnnouncer {
             
             await browser.close()
         } catch (error) {
-            return this.log(INFO_NOT_FOUND)
+            return this.log(error)
         }
     }
 }
