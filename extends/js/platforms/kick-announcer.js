@@ -1,7 +1,6 @@
 import BaseAnnouncer from "../base-announcer.js"
-import {ALERT_ALREADY_CREATED, INFO_NOT_FOUND, STREAMER_OFFLINE} from "../errors.js"
+import {ALERT_ALREADY_CREATED, STREAMER_OFFLINE} from "../errors.js"
 import puppeteer from "puppeteer-extra"
-import {executablePath} from "puppeteer"
 
 const kickChannelName = process.env.KICK_CHANNEL_NAME
 
@@ -19,7 +18,7 @@ export default class KickAnnouncer extends BaseAnnouncer {
         try {
             const browser = await puppeteer.launch({
                 headless: 'new',
-                executablePath: executablePath(),
+                executablePath: process.env.CHROMIUM_PATH,
                 args: ['--no-sandbox']
             })
             const page = await browser.newPage()
@@ -28,6 +27,8 @@ export default class KickAnnouncer extends BaseAnnouncer {
             
             const result = await page.evaluate(() => document.querySelector('body').innerText)
             const data = JSON.parse(result)
+            await browser.close()
+            
             const {livestream} = data
             
             if (!livestream) {
@@ -41,8 +42,6 @@ export default class KickAnnouncer extends BaseAnnouncer {
             
             this.queue.push(stream_id)
             this.sendMessage({title, preview}, stream_id)
-            
-            await browser.close()
         } catch (error) {
             return this.log(error)
         }
