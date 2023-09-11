@@ -25,12 +25,12 @@ export default class KickAnnouncer extends BaseAnnouncer {
                 args: ['--no-sandbox']
             })
             
-            const page = await browser.newPage()
+            const page = await this.browser.newPage()
             await page.goto(kickLink)
             
             const result = await page.evaluate(() => document.querySelector('body').innerText)
             const data = JSON.parse(result)
-            await browser.close()
+            await this.browser.close()
             
             const {livestream} = data
             
