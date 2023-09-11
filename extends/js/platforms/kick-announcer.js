@@ -47,6 +47,7 @@ export default class KickAnnouncer extends BaseAnnouncer {
             this.sendMessage({title, preview}, stream_id)
         } catch (error) {
             if ('close' in this.browser) {
+                this.log('puppetear connection closed')
                 this.browser.close()
             }
             
