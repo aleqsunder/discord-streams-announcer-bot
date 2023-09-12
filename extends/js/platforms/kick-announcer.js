@@ -53,8 +53,6 @@ export default class KickAnnouncer extends BaseAnnouncer {
             }
             
             return this.log(error)
-        } finally {
-            await this.browser.close()
         }
     }
 }
