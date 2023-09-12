@@ -22,6 +22,7 @@ export default class KickAnnouncer extends BaseAnnouncer {
             this.browser = await puppeteer.launch({
                 headless: 'new',
                 executablePath: process.env.CHROMIUM_PATH,
+                userDataDir: '/dev/null',
                 args: ['--no-sandbox']
             })
             
@@ -52,6 +53,8 @@ export default class KickAnnouncer extends BaseAnnouncer {
             }
             
             return this.log(error)
+        } finally {
+            await this.browser.close()
         }
     }
 }
