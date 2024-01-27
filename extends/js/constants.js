@@ -1,7 +1,7 @@
 import {Intents} from 'discord.js'
 
 export const youtube_timeout_limit = 9e5 // 15 минут
-export const kick_timeout_limit = 6e4 // 1 минута
+export const kick_timeout_limit = 6e5 // 10 минут
 
 export const discord_intents = [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
 export const default_headers = {Accept: 'application/json'}

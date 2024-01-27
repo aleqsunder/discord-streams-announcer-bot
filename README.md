@@ -1,12 +1,12 @@
 # discord-streams-announcer-bot
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg" alt=“” height="30px"> ⠀ <img src="https://st.wasd.tv/upload/channel_images/9851a36c-1abb-4c30-a92d-f433a80d226d/original.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Trovo_Logo.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Twitch_logo_%28wordmark_only%29.svg/2560px-Twitch_logo_%28wordmark_only%29.svg.png" alt=“” height="30px"> ⠀ 
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Trovo_Logo.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Twitch_logo_%28wordmark_only%29.svg/2560px-Twitch_logo_%28wordmark_only%29.svg.png" alt=“” height="30px"> ⠀ 
 <br>
 <img src="https://i.imgur.com/UHQFKTV.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/VK_Play_logo.svg/2560px-VK_Play_logo.svg.png" alt=“” height="30px"> ⠀ <img src="https://i.imgur.com/Wggqcrx.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GoodGame_logo.svg/800px-GoodGame_logo.svg.png" alt=“” height="30px">
 
 ## [EN]
 
-Allows you to announce the start of your streams: Youtube, WASD, Trovo, Twitch, Kick, VkPlay, Caffeine and GoodGame!
+Allows you to announce the start of your streams: Youtube, Trovo, Twitch, Kick, VkPlay, Caffeine and GoodGame!
 
 You can safely use this project and/or parts of it in your own projects\
 To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (optional), and then:
@@ -37,10 +37,6 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
   ### Trovo (optional)
   
 `TROVO_CHANNEL_NAME` - trovo channel nickname, e.g. link `https://trovo.live/s/serega_pirat`, where `serega_pirat` is the same nickname
-
-  ### WASD (optional)
-  
-`WASD_CHANNEL_NAME` - the nickname of the wasd-channel, for example a link `https://wasd.tv/serega_pirat`, where `serega_pirat` - the same nickname
 
   ### Twitch (optional)
   
@@ -99,10 +95,6 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
   ### Трово (не обязательно)
 
 `TROVO_CHANNEL_NAME` - никнейм трово-канала, например ссылка `https://trovo.live/s/serega_pirat`, где `serega_pirat` - тот самый никнейм
-
-  ### WASD (не обязательно)
-
-`WASD_CHANNEL_NAME` - никнейм wasd-канала, например ссылка `https://wasd.tv/serega_pirat`, где `serega_pirat` - тот самый никнейм
 
   ### Твич (не обязательно)
 
