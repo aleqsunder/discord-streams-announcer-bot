@@ -11,7 +11,7 @@ export default class YoutubeAnnouncer extends BaseAnnouncer {
     platformName = 'Youtube'
     platformLogo = 'https://i.imgur.com/S4DsV5h.png'
     platformLink = 'https://youtu.be/'
-    platformColor = '#ff0000'
+    platformColor = 0xff0000
     channelName = youtubeChannelID
     interval = youtube_timeout_limit
     

@@ -9,7 +9,7 @@ export default class VkPlayAnnouncer extends BaseAnnouncer {
     platformName = 'VK PLAY'
     platformLogo = 'https://static.vkplay.live/static/favicon.png'
     platformLink = 'https://vkplay.live/'
-    platformColor = '#8e92de'
+    platformColor = 0x8e92de
     channelName = vkPlayChannelName
     
     async checkStream() {

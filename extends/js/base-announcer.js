@@ -1,5 +1,5 @@
 import {webhook_user} from "./constants.js"
-import {MessageEmbed} from "discord.js"
+import {EmbedBuilder} from "discord.js"
 
 const discordChannelId = process.env.DISCORD_CHANNEL_ID
 
@@ -7,7 +7,7 @@ export default class BaseAnnouncer {
     platformName = null
     platformLogo = null
     platformLink = null
-    platformColor = '#000000'
+    platformColor = 0x000000
     channelName = null
     channelNameFormat = null
     interval = 3e4
@@ -25,7 +25,7 @@ export default class BaseAnnouncer {
         this.error('This method is not implemented')
     }
     
-    sendMessage(data, stream_id) {
+    async sendMessage(data, stream_id) {
         this.log(`Video ${stream_id} found, trying to send a message to the channel ${discordChannelId}`)
         
         const discordChannel = this.client.channels.cache.get(discordChannelId)
@@ -33,7 +33,7 @@ export default class BaseAnnouncer {
             const {title, preview, videoId = null} = data
             const {name, avatar} = webhook_user
             const link = this.platformLink + (videoId ?? this.channelName)
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setTitle(title)
                 .setAuthor({
                     name: `${this.channelNameFormat ?? this.channelName}`,
@@ -46,16 +46,15 @@ export default class BaseAnnouncer {
                     iconURL: this.platformLogo,
                     text: `Стрим на ${this.platformName}`
                 })
+    
+            const context = await discordChannel.createWebhook({name, avatar})
+            this.log(`Sending a message`)
             
-            discordChannel.createWebhook(name, {avatar})
-                .then(async context => {
-                    this.log(`Sending a message`)
-                    await context.send({
-                        content: '@here',
-                        embeds: [embed]
-                    })
-                    await context.delete()
-                })
+            await context.send({
+                content: '@here',
+                embeds: [embed]
+            })
+            await context.delete()
         }
     }
     

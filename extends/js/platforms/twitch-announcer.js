@@ -9,7 +9,7 @@ export default class TwitchAnnouncer extends BaseAnnouncer {
     platformName = 'Twitch'
     platformLogo = 'https://i.imgur.com/SJah69y.png'
     platformLink = 'https://www.twitch.tv/'
-    platformColor = '#a970ff'
+    platformColor = 0xa970ff
     channelName = twitchChannelName
     
     async checkStream() {

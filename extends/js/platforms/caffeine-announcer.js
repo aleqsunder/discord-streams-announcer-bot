@@ -9,7 +9,7 @@ export default class CaffeineAnnouncer extends BaseAnnouncer {
     platformName = 'Caffeine'
     platformLogo = 'https://www.caffeine.tv/favicon-v3-32x32.png'
     platformLink = 'https://www.caffeine.tv/'
-    platformColor = '#0000ff'
+    platformColor = 0x0000ff
     channelName = caffeineChannelName
     
     async checkStream() {

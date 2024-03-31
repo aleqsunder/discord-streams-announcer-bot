@@ -8,7 +8,7 @@ export default class TrovoAnnouncer extends BaseAnnouncer {
     platformName = 'Trovo'
     platformLogo = 'https://i.imgur.com/17ZhzQa.png'
     platformLink = 'https://trovo.live/s/'
-    platformColor = '#1cbc73'
+    platformColor = 0x1cbc73
     channelName = trovoChannelName
     
     async checkStream() {
