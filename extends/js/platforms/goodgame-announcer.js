@@ -10,7 +10,7 @@ export default class GoodGameAnnouncer extends BaseAnnouncer {
     platformName = 'GOODGAME'
     platformLogo = 'https://static.goodgame.ru/images/favicon/apple-icon-76x76.png'
     platformLink = 'https://goodgame.ru/channel/'
-    platformColor = '#233056'
+    platformColor = 0x233056
     channelName = GOODGAME_CHANNEL_NAME
     
     async checkStream() {
