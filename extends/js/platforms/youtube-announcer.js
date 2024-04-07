@@ -1,5 +1,4 @@
-import fetch from "node-fetch"
-import {default_headers as headers, youtube_timeout_limit} from "../constants.js"
+import {youtube_timeout_limit} from "../constants.js"
 import {convertApiKeys} from "../helpers.js"
 import BaseAnnouncer from "../base-announcer.js"
 import {ALERT_ALREADY_CREATED, INFO_NOT_FOUND, STREAMER_OFFLINE} from "../errors.js";
@@ -16,20 +15,16 @@ export default class YoutubeAnnouncer extends BaseAnnouncer {
     interval = youtube_timeout_limit
     
     async checkStream() {
-        this.log(`Trying to get a list of user streams ${this.channelName}`)
         const currentTime = new Date()
         const interval = this.interval / youtubeApiKeys.length
         const currentSecondsInThisHour = (currentTime.getMinutes() * 60 + currentTime.getSeconds())
         const currentYoutubeApiKeyIndex = (currentSecondsInThisHour / (interval / 1000) ^ 0) % youtubeApiKeys.length
         const currentYoutubeApiKey = youtubeApiKeys[currentYoutubeApiKeyIndex]
-        const youtubeLink = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${this.channelName}&eventType=live&type=video&key=${currentYoutubeApiKey}`
-        const response = await fetch(youtubeLink, {
-            headers,
-            cache: 'no-store'
-        })
-        const textRaw = await response.text()
+        
+        const link = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${this.channelName}&eventType=live&type=video&key=${currentYoutubeApiKey}`
+        
         try {
-            const data = JSON.parse(textRaw)
+            const data = await this.getData(link)
             if (!data || !data.items || data.items.length === 0) {
                 console.log(JSON.stringify(data))
                 return this.log(INFO_NOT_FOUND)

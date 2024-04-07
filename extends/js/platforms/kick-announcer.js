@@ -14,16 +14,8 @@ export default class KickAnnouncer extends BaseAnnouncer {
     interval = kick_timeout_limit
     
     async checkStream() {
-        this.log(`Trying to get a status of channel ${this.channelName}`)
-        
         try {
-            const kickApi = new KickApiWrapper({
-                puppeteer: {
-                    args: ['--no-sandbox']
-                }
-            })
-    
-            const {livestream} = await kickApi.fetchChannelData(this.channelName)
+            const {livestream} = await this.getData()
             if (!livestream) {
                 return this.log(STREAMER_OFFLINE)
             }
@@ -38,5 +30,17 @@ export default class KickAnnouncer extends BaseAnnouncer {
         } catch (error) {
             return this.log(error)
         }
+    }
+    
+    async getData() {
+        this.log(`Get a stream info ${this.channelNameFormat ?? this.channelName}`)
+        
+        const kickApi = new KickApiWrapper({
+            puppeteer: {
+                args: ['--no-sandbox']
+            }
+        })
+        
+        return await kickApi.fetchChannelData(this.channelName)
     }
 }
