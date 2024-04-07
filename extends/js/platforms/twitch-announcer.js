@@ -42,7 +42,7 @@ export default class TwitchAnnouncer extends BaseAnnouncer {
             this.queue.push(stream_id)
             this.sendMessage({
                 title,
-                preview
+                preview: preview + `?v=${Math.round(Math.random() * 1e10)}`
             }, stream_id)
         } catch (e) {
             switch (e.message) {
