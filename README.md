@@ -3,6 +3,8 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Trovo_Logo.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Twitch_logo_%28wordmark_only%29.svg/2560px-Twitch_logo_%28wordmark_only%29.svg.png" alt=“” height="30px"> ⠀ 
 <br>
 <img src="https://i.imgur.com/UHQFKTV.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/VK_Play_logo.svg/2560px-VK_Play_logo.svg.png" alt=“” height="30px"> ⠀ <img src="https://i.imgur.com/Wggqcrx.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GoodGame_logo.svg/800px-GoodGame_logo.svg.png" alt=“” height="30px">
+<br>
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/OPENREC_Logo.svg" alt=“” height="30px"> ⠀ 
 
 ## [EN]
 
@@ -60,6 +62,10 @@ If you get the error `For error "Missing libgbm.so.1"` - run the command `sudo a
   ### GOODGAME.RU (optional)
 
 `GOODGAME_CHANNEL_NAME` - the nickname of the goodgame-channel, for example a link `https://goodgame.ru/serega_pirat`, where `serega_pirat` - the same nickname
+
+  ### OPENREC (optional)
+
+`OPENREC_CHANNEL_NAME` - the nickname of the openRec-channel, for example a link `https://www.openrec.tv/user/serega_pirat`, where `serega_pirat` - the same nickname
 
 </details>
 
@@ -119,5 +125,9 @@ If you get the error `For error "Missing libgbm.so.1"` - run the command `sudo a
   ### GOODGAME.RU (не обязательно)
 
 `GOODGAME_CHANNEL_NAME` - никнейм goodgame-канала, например ссылка `https://goodgame.ru/serega_pirat`, где `serega_pirat` - тот самый никнейм
+
+  ### OPENREC (не обязательно)
+
+`OPENREC_CHANNEL_NAME` - никнейм openRec-канала, например ссылка `https://www.openrec.tv/user/serega_pirat`, где `serega_pirat` - тот самый никнейм
   
 </details>
