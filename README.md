@@ -47,6 +47,7 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
   ### Kick (optional)
 
 `KICK_CHANNEL_NAME` - the nickname of the kick-channel, for example a link `https://kick.com/serega-pirat15`, where `serega-pirat15` - the same nickname
+If you get the error `For error "Missing libgbm.so.1"` - run the command `sudo apt-get install libgbm-dev`
 
   ### VK PLAY (optional)
   
@@ -105,6 +106,7 @@ To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](h
   ### Кик (не обязательно)
 
 `KICK_CHANNEL_NAME` - никнейм кик-канала, например ссылка `https://kick.com/serega-pirat15`, где `serega-pirat15` - тот самый никнейм
+Если выдаёт ошибку `For error "Missing libgbm.so.1"` - выполнить команду `sudo apt-get install libgbm-dev`
 
   ### ВК ПЛЕЙ (не обязательно)
   
