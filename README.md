@@ -8,7 +8,7 @@
 
 ## [EN]
 
-Allows you to announce the start of your streams: Youtube, Trovo, Twitch, Kick, VkPlay, Caffeine and GoodGame!
+Allows you to announce the start of your streams: Youtube, Trovo, Twitch, Kick, VkPlay, Caffeine, GoodGame and OpenRec!
 
 You can safely use this project and/or parts of it in your own projects\
 To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (optional), and then:
@@ -71,7 +71,7 @@ If you get the error `For error "Missing libgbm.so.1"` - run the command `sudo a
 
 ## [RU]
 
-Позволяет анонсировать начало ваших стримов: Youtube, WASD, Trovo, Twitch, VkPlay, Caffeine и GoodGame!
+Позволяет анонсировать начало ваших стримов: Youtube, WASD, Trovo, Twitch, VkPlay, Caffeine, GoodGame и OpenRec!
 
 Вы можете спокойно использовать данный проект и/или его отдельные части в своих проектах\
 Для начала работы необходимо установить [NodeJS](https://nodejs.org/en/) и [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (не обязательно), и следом:
