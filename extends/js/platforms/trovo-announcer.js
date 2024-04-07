@@ -12,34 +12,18 @@ export default class TrovoAnnouncer extends BaseAnnouncer {
     channelName = trovoChannelName
     
     async checkStream() {
-        this.log(`Trying to get a status of channel ${this.channelName}`)
-        const trovoLink = `https://api-web.trovo.live/graphql?qid=0`
-        const body = JSON.stringify([{
-            operationName: "live_LiveReaderService_GetLiveInfo",
-            variables: {
-                params: {
-                    userName: this.channelName,
-                    requireDecorations: true
-                }
-            }
-        }])
-        const response = await fetch(trovoLink, {
-            method: 'POST',
-            mode: 'no-cors',
-            cache: 'no-store',
-            body
-        })
-        const textRaw = await response.text()
+        const link = `https://api-web.trovo.live/graphql?qid=0`
+        
         try {
             /** @param {result: {data: {live_LiveReaderService_GetLiveInfo: Object}}} result */
-            const [result] = JSON.parse(textRaw)
+            const [result] = await this.getData(link)
             if (!result.data?.live_LiveReaderService_GetLiveInfo) {
                 return this.log(INFO_NOT_FOUND)
             }
             
             const {data: {live_LiveReaderService_GetLiveInfo: info = {}} = {}} = result
             const {isLive = false, programInfo = {}} = info
-            const {id: stream_id = 0} = programInfo
+            const {id: stream_id = 0, title = '', coverUrl: preview = ''} = programInfo
     
             if (!isLive) {
                 return this.log(STREAMER_OFFLINE)
@@ -49,12 +33,33 @@ export default class TrovoAnnouncer extends BaseAnnouncer {
             }
     
             this.queue.push(stream_id)
-            this.sendMessage({
-                title: programInfo.title,
-                preview: programInfo.coverUrl
-            }, stream_id)
+            this.sendMessage({title, preview}, stream_id)
         } catch (error) {
             console.error(error)
         }
+    }
+    
+    async getData(link) {
+        this.log(`Get a stream info ${this.channelNameFormat ?? this.channelName}`)
+    
+        const body = JSON.stringify([{
+            operationName: "live_LiveReaderService_GetLiveInfo",
+            variables: {
+                params: {
+                    userName: this.channelName,
+                    requireDecorations: true
+                }
+            }
+        }])
+        
+        const response = await fetch(link, {
+            method: 'POST',
+            mode: 'no-cors',
+            cache: 'no-store',
+            body
+        })
+        
+        const textRaw = await response.text()
+        return JSON.parse(textRaw)
     }
 }

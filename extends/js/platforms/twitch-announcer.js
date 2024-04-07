@@ -13,7 +13,8 @@ export default class TwitchAnnouncer extends BaseAnnouncer {
     channelName = twitchChannelName
     
     async checkStream() {
-        this.log(`Trying to get a status of channel ${twitchChannelName}`)
+        this.log(`Get a stream info ${this.channelNameFormat ?? this.channelName}`)
+        
         try {
             const userData = await this.getUser(twitchChannelName)
             if (userData.length === 0) {

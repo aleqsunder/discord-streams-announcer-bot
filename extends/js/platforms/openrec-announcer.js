@@ -1,22 +1,23 @@
 import BaseAnnouncer from "../base-announcer.js"
 import {ALERT_ALREADY_CREATED, INFO_NOT_FOUND, STREAMER_OFFLINE} from "../errors.js"
 
-const caffeineChannelName = process.env.CAFFEINE_CHANNEL_NAME
+const openRecChannelName = process.env.OPENREC_CHANNEL_NAME
 
-export default class CaffeineAnnouncer extends BaseAnnouncer {
-    platformName = 'Caffeine'
-    platformLogo = 'https://www.caffeine.tv/favicon-v3-32x32.png'
-    platformLink = 'https://www.caffeine.tv/'
-    platformColor = 0x0000ff
-    channelName = caffeineChannelName
+export default class OpenRecAnnouncer extends BaseAnnouncer {
+    platformName = 'OPENREC'
+    platformLogo = 'https://i.imgur.com/pH9lRvn.png'
+    platformLink = 'https://www.openrec.tv/user/'
+    platformColor = 0xE7E5F0
+    channelName = openRecChannelName
     
     async checkStream() {
-        const link = `https://api.caffeine.tv/social/public/${caffeineChannelName}/featured`
+        const link = `https://public.openrec.tv/external/api/v5/channels/${this.channelName}`
         
         try {
             const data = await this.getData(link)
-            const {broadcast_info: info = {}, is_live = false} = data
-            const {broadcast_id: stream_id = null} = info
+            const {onair_broadcast_movies: movies = [], is_live = false, l_cover_image_url: preview = ''} = data
+            const [movie = {}] = movies
+            const {id: stream_id = 0, title = ''} = movie
             
             if (is_live !== true || stream_id === null) {
                 return this.log(STREAMER_OFFLINE)
@@ -24,9 +25,6 @@ export default class CaffeineAnnouncer extends BaseAnnouncer {
             if (this.queue.includes(stream_id)) {
                 return this.log(ALERT_ALREADY_CREATED)
             }
-            
-            const {broadcast_title: title, preview_image_path: previewChunk} = info
-            const preview = 'https://api-sam.caffeine.tv/thumb' + previewChunk
             
             this.queue.push(stream_id)
             this.sendMessage({

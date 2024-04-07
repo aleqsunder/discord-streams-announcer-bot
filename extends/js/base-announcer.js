@@ -1,5 +1,6 @@
-import {webhook_user} from "./constants.js"
+import {default_headers as headers, webhook_user} from "./constants.js"
 import {EmbedBuilder} from "discord.js"
+import fetch from "node-fetch"
 
 const discordChannelId = process.env.DISCORD_CHANNEL_ID
 
@@ -56,6 +57,18 @@ export default class BaseAnnouncer {
             })
             await context.delete()
         }
+    }
+    
+    async getData(link) {
+        this.log(`Get a stream info ${this.channelNameFormat ?? this.channelName}`)
+        
+        const response = await fetch(link, {
+            headers,
+            cache: 'no-store'
+        })
+        
+        const textRaw = await response.text()
+        return JSON.parse(textRaw)
     }
     
     async runQueue(_client) {
