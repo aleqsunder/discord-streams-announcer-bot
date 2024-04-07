@@ -1,10 +1,10 @@
 # discord-streams-announcer-bot
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Trovo_Logo.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Twitch_logo_%28wordmark_only%29.svg/2560px-Twitch_logo_%28wordmark_only%29.svg.png" alt=“” height="30px"> ⠀ 
+[<img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg" alt=“” height="30px">](https://www.youtube.com/) ⠀ [<img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Trovo_Logo.png" alt=“” height="30px">](https://trovo.live/) ⠀ [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Twitch_logo_%28wordmark_only%29.svg/2560px-Twitch_logo_%28wordmark_only%29.svg.png" alt=“” height="30px">](https://www.twitch.tv/) ⠀ 
 <br>
-<img src="https://i.imgur.com/UHQFKTV.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/VK_Play_logo.svg/2560px-VK_Play_logo.svg.png" alt=“” height="30px"> ⠀ <img src="https://i.imgur.com/Wggqcrx.png" alt=“” height="30px"> ⠀ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GoodGame_logo.svg/800px-GoodGame_logo.svg.png" alt=“” height="30px">
+[<img src="https://i.imgur.com/UHQFKTV.png" alt=“” height="30px">](https://kick.com/) ⠀ [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/VK_Play_logo.svg/2560px-VK_Play_logo.svg.png" alt=“” height="30px">](https://live.vkplay.ru/) ⠀ [<img src="https://i.imgur.com/Wggqcrx.png" alt=“” height="30px">](https://www.caffeine.tv/) ⠀ [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GoodGame_logo.svg/800px-GoodGame_logo.svg.png" alt=“” height="30px">](https://goodgame.ru/)
 <br>
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/OPENREC_Logo.svg" alt=“” height="30px"> ⠀ 
+[<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/OPENREC_Logo.svg" alt=“” height="30px">](https://www.openrec.tv/) ⠀ 
 
 ## [EN]
 
