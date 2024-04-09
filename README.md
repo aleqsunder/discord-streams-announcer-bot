@@ -2,13 +2,13 @@
 
 [<img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg" alt=“” height="30px">](https://www.youtube.com/) ⠀ [<img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Trovo_Logo.png" alt=“” height="30px">](https://trovo.live/) ⠀ [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Twitch_logo_%28wordmark_only%29.svg/2560px-Twitch_logo_%28wordmark_only%29.svg.png" alt=“” height="30px">](https://www.twitch.tv/) ⠀ 
 <br>
-[<img src="https://i.imgur.com/UHQFKTV.png" alt=“” height="30px">](https://kick.com/) ⠀ [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/VK_Play_logo.svg/2560px-VK_Play_logo.svg.png" alt=“” height="30px">](https://live.vkplay.ru/) ⠀ [<img src="https://i.imgur.com/Wggqcrx.png" alt=“” height="30px">](https://www.caffeine.tv/) ⠀ [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GoodGame_logo.svg/800px-GoodGame_logo.svg.png" alt=“” height="30px">](https://goodgame.ru/)
+[<img src="https://i.imgur.com/UHQFKTV.png" alt=“” height="30px">](https://kick.com/) ⠀ [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/VK_Play_logo.svg/2560px-VK_Play_logo.svg.png" alt=“” height="30px">](https://live.vkplay.ru/) ⠀ [<img src="https://i.imgur.com/Wggqcrx.png" alt=“” height="30px">](https://www.caffeine.tv/)
 <br>
-[<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/OPENREC_Logo.svg" alt=“” height="30px">](https://www.openrec.tv/) ⠀ 
+[<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/OPENREC_Logo.svg" alt=“” height="30px">](https://www.openrec.tv/) ⠀ [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GoodGame_logo.svg/800px-GoodGame_logo.svg.png" alt=“” height="30px">](https://goodgame.ru/) ⠀⠀[<img src="https://static.nuum.ru/assets/fe-new/images/logos/nuum-full.svg" alt=“” height="30px">](https://nuum.ru/) ⠀⠀
 
 ## [EN]
 
-Allows you to announce the start of your streams: Youtube, Trovo, Twitch, Kick, VkPlay, Caffeine, GoodGame and OpenRec!
+Allows you to announce the start of your streams: Youtube, Trovo, Twitch, Kick, VkPlay, Caffeine, GoodGame, OpenRec and Nuum!
 
 You can safely use this project and/or parts of it in your own projects\
 To get started you need to install [NodeJS](https://nodejs.org/en/) and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (optional), and then:
@@ -67,11 +67,15 @@ If you get the error `For error "Missing libgbm.so.1"` - run the command `sudo a
 
 `OPENREC_CHANNEL_NAME` - the nickname of the openRec-channel, for example a link `https://www.openrec.tv/user/serega_pirat`, where `serega_pirat` - the same nickname
 
+  ### Nuum (optional)
+
+`NUUM_CHANNEL_NAME` - the nickname of the nuum-channel, for example a link `https://nuum.ru/channel/serega_pirat`, where `serega_pirat` - the same nickname
+
 </details>
 
 ## [RU]
 
-Позволяет анонсировать начало ваших стримов: Youtube, WASD, Trovo, Twitch, VkPlay, Caffeine, GoodGame и OpenRec!
+Позволяет анонсировать начало ваших стримов: Youtube, WASD, Trovo, Twitch, VkPlay, Caffeine, GoodGame, OpenRec и Nuum!
 
 Вы можете спокойно использовать данный проект и/или его отдельные части в своих проектах\
 Для начала работы необходимо установить [NodeJS](https://nodejs.org/en/) и [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/) (не обязательно), и следом:
@@ -129,5 +133,9 @@ If you get the error `For error "Missing libgbm.so.1"` - run the command `sudo a
   ### OPENREC (не обязательно)
 
 `OPENREC_CHANNEL_NAME` - никнейм openRec-канала, например ссылка `https://www.openrec.tv/user/serega_pirat`, где `serega_pirat` - тот самый никнейм
+
+  ### Nuum (не обязательно)
+
+`NUUM_CHANNEL_NAME` - никнейм nuum-канала, например ссылка `https://nuum.ru/channel/serega_pirat`, где `serega_pirat` - тот самый никнейм
   
 </details>
