@@ -6,6 +6,7 @@ import CaffeineAnnouncer from "./caffeine-announcer.js"
 import GoodGameAnnouncer from "./goodgame-announcer.js"
 import KickAnnouncer from "./kick-announcer.js"
 import OpenRecAnnouncer from "./openrec-announcer.js"
+import NuumAnnouncer from "./nuum-announcer.js"
 
 export default [
     new YoutubeAnnouncer(),
@@ -16,4 +17,5 @@ export default [
     new GoodGameAnnouncer(),
     new KickAnnouncer(),
     new OpenRecAnnouncer(),
+    new NuumAnnouncer(),
 ]
